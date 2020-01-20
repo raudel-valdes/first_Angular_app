@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-servers',
+  //selector: '[app-servers] -> used for attributes in html tags
+  //selector: '.app-server'  -> used for classes in html tags
+  selector: 'app-servers', //-> used as an element/tag in html
+  //template: `<app-server></app-server> 
+            //<app-server></app-server>` -> the backticks help for multiline
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
+
 export class ServersComponent implements OnInit {
   allowNewServer = false;
   serverCreationStatus = 'No server was created!';
@@ -28,12 +33,14 @@ export class ServersComponent implements OnInit {
     this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
   } 
 
-  onUpdateServerName(event: any) {
+  onUpdateServerName(event: Event) {
     this.serverName = (<HTMLInputElement>event.target).value;
   }
 
-  onUpdateUsername(event: any) {
-    this.username = (<HTMLInputElement>event.target).value;
+  onUpdateUsername(event: Event) {
+    //<HTMLInputElement> is explicit casting so that angular 
+    //knows what kind of data it is
+    this.username = (<HTMLInputElement>event.target).value; 
   }
 }
 
