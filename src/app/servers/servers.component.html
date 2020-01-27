@@ -36,3 +36,31 @@ class="form-control"
 </ng-template>
 <app-server *ngFor="let server of servers"></app-server>
 
+<button 
+  class="btn btn-primary"
+  (click)="onDisplayMessage()"> {{displayMessage === false ? 'Display Details' : 'Hide Details' }}
+</button>
+
+<ng-template #noDisplay>
+  <p #noDisplay>Press the button to find out more!</p>
+</ng-template>
+
+<div *ngIf="displayMessage; else noDisplay" style="width: 40em;">
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+    laboris nisi ut aliquip ex ea commodo consequat. Duis 
+    aute irure dolor in reprehenderit in voluptate velit 
+    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+    occaecat cupidatat non proident, sunt in culpa qui officia 
+    deserunt mollit anim id est laborum.
+  </p>
+  
+  <p 
+    [ngStyle]="{backgroundColor: i >= 4 ? 'blue': 'transparent'}" 
+    *ngFor="let track of displayButtonRecord; let i = index"
+    [ngClass]="{'white-text': i >= 4}">
+    {{track}}
+  </p>
+</div>

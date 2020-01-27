@@ -17,6 +17,8 @@ export class ServersComponent implements OnInit {
   username = '';
   serverCreated = false;
   servers = ['Testserver', 'Testserver 2'];
+  displayMessage = false;
+  displayButtonRecord = [];
 
   constructor() { 
     setTimeout(() => {
@@ -46,6 +48,15 @@ export class ServersComponent implements OnInit {
     //<HTMLInputElement> is explicit casting so that angular 
     //knows what kind of data it is
     this.username = (<HTMLInputElement>event.target).value; 
+  }
+
+  onDisplayMessage() {
+    if(!this.displayMessage) {
+      var ts = new Date();
+      this.displayButtonRecord.push(` ${ts.toLocaleTimeString()}, ${ts.toDateString()}`);
+    }
+
+    this.displayMessage = !this.displayMessage;
   }
 }
 
